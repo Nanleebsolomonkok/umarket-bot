@@ -899,6 +899,8 @@ def set_webhook():
     e.g. https://your-bot.vercel.app/set-webhook
     """
     host = request.host_url.rstrip("/")
+    if host.startswith("http://"):
+        host = "https://" + host[7:]
     webhook_url = f"{host}/"
 
     payload = {"url": webhook_url}
@@ -909,6 +911,17 @@ def set_webhook():
     return jsonify(r.json())
 
 
+@app.route("/get-webhook-info", methods=["GET"])
+def get_webhook_info():
+    """
+    Call this endpoint to check the current webhook configuration and any errors from Telegram.
+    e.g. https://your-bot.vercel.app/get-webhook-info
+    """
+    r = requests.get(f"{BASE_URL}/getWebhookInfo", timeout=10)
+    return jsonify(r.json())
+
+
 # ── Local dev entry point ──────────────────────────────────────────────────
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
