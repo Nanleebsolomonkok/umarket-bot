@@ -236,7 +236,19 @@ def handle_set_email(chat_id, user_id):
 
 def handle_support(chat_id, user_id):
     set_state(user_id, "awaiting_support")
-    send_message(chat_id, "📬 Please describe your issue and we'll get back to you as soon as possible:")
+    keyboard = inline_kb([
+        [ibtn("💬 Chat on WhatsApp", url="https://wa.me/233509505771")]
+    ])
+    send_message(
+        chat_id,
+        (
+            "📬 *UMarket Support Center*\n\n"
+            "• Write your issue or question in the chat below to submit a support ticket to our team.\n"
+            "• Or, contact our team directly on WhatsApp using the button below:\n\n"
+            "📞 WhatsApp: `+233 509505771`"
+        ),
+        reply_markup=keyboard
+    )
 
 
 def handle_check_ticket(chat_id, user_id):
