@@ -16,7 +16,7 @@ PAYSTACK_SECRET_KEY = os.environ.get("PAYSTACK_SECRET_KEY", "YOUR_PAYSTACK_SECRE
 WEBHOOK_URL = os.environ.get("WEBHOOK_URL", "https://your-production-domain.com/webhook")
 
 # Configured Administrators
-ADMINS = [6830221233, 7527898347, 7565569911]
+ADMINS = [6830221233,6075653766]
 bot = telepot.Bot(API_TOKEN)
 
 # Database Isolation & Thread Safety Configuration
