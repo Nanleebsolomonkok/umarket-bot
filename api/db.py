@@ -11,7 +11,7 @@ from psycopg2.extras import RealDictCursor
 
 def get_connection():
     """Return a new psycopg2 connection using DATABASE_URL."""
-    database_url = os.environ.get("DATABASE_URL", "")
+    database_url = os.environ.get("DATABASE_URL", "").strip()  # strip any accidental whitespace/newlines
     if not database_url:
         raise RuntimeError("DATABASE_URL environment variable is not set.")
     conn = psycopg2.connect(database_url, cursor_factory=RealDictCursor)
